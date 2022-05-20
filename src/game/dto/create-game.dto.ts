@@ -13,7 +13,7 @@ export class createGameDto {
   @IsDateString()
   year: string;
 
-  @IsNumber()
+  @IsNumber({}, {message: 'ImdbScore is not a number!'})
   @Min(0)
   @Max(5)
   imdbScore: number;

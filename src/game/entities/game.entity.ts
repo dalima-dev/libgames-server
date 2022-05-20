@@ -2,6 +2,6 @@ export class Game {
   id?: string;
   title: string;
   description: string;
-  year: number;
+  year: string;
   imdbScore: number;
 }
