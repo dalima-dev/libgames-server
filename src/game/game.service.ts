@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Game } from './entities/game.entity';
 
 @Injectable()
 export class GameService {
@@ -14,12 +15,12 @@ export class GameService {
     return this.findById(id);
   }
 
-  create(data) {
+  create(data: Game) {
     return data;
   }
 
-  update(id: string, data: any) {
-    return 'update';
+  update(id: string, data: Game) {
+    return data;
   }
 
   delete(id: string) {

@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { Game } from './dto/create-game.dto';
+import { createGameDto } from './dto/create-game.dto';
 import { GameService } from './game.service';
 
 @Controller('game')
@@ -17,7 +17,7 @@ export class GameController {
   }
 
   @Post()
-  create(@Body() dto: Game) {
+  create(@Body() dto: createGameDto) {
     return this.gameService.create(dto);
   }
 
