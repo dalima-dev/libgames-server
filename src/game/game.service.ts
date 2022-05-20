@@ -16,11 +16,11 @@ export class GameService {
   }
 
   create(data: Game) {
-    return data;
+    return 'create';
   }
 
   update(id: string, data: Game) {
-    return data;
+    return 'update';
   }
 
   delete(id: string) {

@@ -11,7 +11,7 @@ export class GameController {
     return this.gameService.findAll();
   }
 
-  @Get()
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.gameService.findOne(id);
   }
@@ -21,7 +21,7 @@ export class GameController {
     return this.gameService.create(dto);
   }
 
-  @Patch()
+  @Patch(':id')
   update(@Param('id') id: string, @Body() dto) {
     return this.gameService.update(id, dto);
   }
