@@ -14,8 +14,8 @@ export class GameService {
     return this.findById(id);
   }
 
-  create() {
-    return 'create method';
+  create(data) {
+    return data;
   }
 
   update(id: string, data: any) {
