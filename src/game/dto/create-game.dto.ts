@@ -10,6 +10,13 @@ export class CreateGameDto {
   })
   title: string;
 
+  @IsString({ message: 'Cover Image URL is not a string!' })
+  @ApiProperty({
+    description: 'URL of game image.',
+    example: 'https://m.media-amazon.com/images/I/91u+hPR8NTL._AC_SX425_.jpg',
+  })
+  converImageUrl: string;
+
   @IsString({ message: 'Description is not a string!' })
   @Length(10, 200)
   @ApiProperty({
@@ -34,4 +41,18 @@ export class CreateGameDto {
     example: '3',
   })
   imdbScore: number;
+
+  @IsString({ message: 'Trailer URL is not a string!' })
+  @ApiProperty({
+    description: 'Trailer URL of the game.',
+    example: 'An adventure game with great story and gameplay.',
+  })
+  trailerYoutubeUrl: string;
+
+  @IsString({ message: 'Gameplay URL is not a string!' })
+  @ApiProperty({
+    description: 'Gameplay URL of the game.',
+    example: 'An adventure game with great story and gameplay.',
+  })
+  gameplayYoutubeUrl: string;
 }

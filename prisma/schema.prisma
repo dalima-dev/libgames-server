@@ -11,14 +11,17 @@ datasource db {
 }
 
 model Game {
-  id          String @id @default(uuid())
-  title       String @unique
-  description String
-  year        Int
-  imdbScore   Int
+  id                 String @id @default(uuid())
+  title              String @unique
+  coverImageUrl      String
+  description        String
+  year               Int
+  imdbScore          Int
+  trailerYoutubeUrl  String
+  gameplayYoutubeUrl String
 }
 
 model Gender {
-  id   Int @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String @unique
 }
