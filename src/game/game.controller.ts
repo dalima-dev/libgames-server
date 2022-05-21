@@ -8,7 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { createGameDto } from './dto/create-game.dto';
+import { CreateGameDto } from './dto/create-game.dto';
 import { GameService } from './game.service';
 
 @ApiTags('game')
@@ -30,7 +30,7 @@ export class GameController {
 
   @Post()
   @ApiOperation({ summary: 'Create new game.' })
-  create(@Body() dto: createGameDto) {
+  create(@Body() dto: CreateGameDto) {
     return this.gameService.create(dto);
   }
 

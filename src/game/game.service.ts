@@ -1,29 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpCode,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateGameDto } from './dto/create-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
 import { Game } from './entities/game.entity';
 
 @Injectable()
 export class GameService {
-  findAll() {
-    return 'findall service';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async findAll(): Promise<Game[]> {
+    return await this.prisma.game.findMany();
   }
 
-  findById(id: string) {
-    return id;
+  async findById(id: string): Promise<Game> {
+    const data = await this.prisma.game.findUnique({ where: { id } });
+    if (!data) throw new NotFoundException(`Register with id ${id} not found!`);
+    return data;
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<Game> {
     return this.findById(id);
   }
 
-  create(data: Game) {
-    return 'create';
+  async create(dto: CreateGameDto) {
+    const data: Game = { ...dto };
+    return await this.prisma.game.create({ data }).catch(this.handleError);
   }
 
-  update(id: string, data: Game) {
-    return 'update';
+  handleError(error: Error) {
+    console.log(error);
   }
 
-  delete(id: string) {
-    return 'delete';
+  async update(id: string, dto: UpdateGameDto) {
+    await this.findById(id);
+    const data: Partial<Game> = { ...dto };
+    await this.prisma.game.update({ where: { id }, data });
+  }
+
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(id: string) {
+    await this.findById(id);
+    await this.prisma.game.delete({ where: { id } });
   }
 }

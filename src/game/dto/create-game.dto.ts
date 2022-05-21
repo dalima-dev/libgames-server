@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsString, Length, Max, Min } from 'class-validator';
 
-export class createGameDto {
+export class CreateGameDto {
   @IsString({ message: 'Title is not a string!' })
   @Length(2, 30)
   @ApiProperty({
