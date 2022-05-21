@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateGameDto } from './dto/create-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
 import { GameService } from './game.service';
 
 @ApiTags('game')
@@ -36,13 +37,13 @@ export class GameController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update new game by ID.' })
-  update(@Param('id') id: string, @Body() dto) {
+  update(@Param('id') id: string, @Body() dto: UpdateGameDto) {
     return this.gameService.update(id, dto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a game by ID.' })
   delete(@Param('id') id: string) {
-    return this.gameService.delete(id);
+    this.gameService.delete(id);
   }
 }

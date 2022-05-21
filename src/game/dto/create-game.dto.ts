@@ -6,7 +6,7 @@ export class CreateGameDto {
   @Length(2, 30)
   @ApiProperty({
     description: 'Title of the game.',
-    example: 'Bloodborne.',
+    example: 'Bloodborne',
   })
   title: string;
 

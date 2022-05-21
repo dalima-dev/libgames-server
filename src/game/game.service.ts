@@ -39,7 +39,7 @@ export class GameService {
   async update(id: string, dto: UpdateGameDto) {
     await this.findById(id);
     const data: Partial<Game> = { ...dto };
-    await this.prisma.game.update({ where: { id }, data });
+    return await this.prisma.game.update({ where: { id }, data });
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
