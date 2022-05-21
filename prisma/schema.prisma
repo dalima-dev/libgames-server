@@ -17,3 +17,8 @@ model Game {
   year        Int
   imdbScore   Int
 }
+
+model Gender {
+  id   String @id @default(uuid())
+  name String @unique
+}

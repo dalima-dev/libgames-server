@@ -13,8 +13,8 @@ export class GenderService {
     return 'This action adds a new gender';
   }
 
-  findAll() {
-    return `This action returns all gender`;
+  async findAll() {
+    return await this.prisma.;
   }
 
   findOne(id: string) {
