@@ -1,10 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGenderDto } from './dto/create-gender.dto';
 import { UpdateGenderDto } from './dto/update-gender.dto';
 
 @Injectable()
 export class GenderService {
-  create(createGenderDto: CreateGenderDto) {
+  constructor(private readonly prisma: PrismaService){}
+
+  create(dto: CreateGenderDto) {
+
+
     return 'This action adds a new gender';
   }
 
@@ -16,7 +21,7 @@ export class GenderService {
     return `This action returns a #${id} gender`;
   }
 
-  update(id: string, updateGenderDto: UpdateGenderDto) {
+  update(id: string, dto: UpdateGenderDto) {
     return `This action updates a #${id} gender`;
   }
 
