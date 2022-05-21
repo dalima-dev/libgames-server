@@ -45,6 +45,6 @@ export class GameService {
   @HttpCode(HttpStatus.NO_CONTENT)
   async delete(id: string) {
     await this.findById(id);
-    await this.prisma.game.delete({ where: { id } });
+    return await this.prisma.game.delete({ where: { id } });
   }
 }
