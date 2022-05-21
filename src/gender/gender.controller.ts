@@ -32,18 +32,18 @@ export class GenderController {
   @Get(':id')
   @ApiOperation({ summary: 'This returns a gender by id.' })
   findOne(@Param('id') id: string) {
-    return this.genderService.findOne(id);
+    return this.genderService.findOne(+id);
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'This updates a gender by id.' })
   update(@Param('id') id: string, @Body() updateGenderDto: UpdateGenderDto) {
-    return this.genderService.update(id, updateGenderDto);
+    return this.genderService.update(+id, updateGenderDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'This remove a gender by id.' })
   remove(@Param('id') id: string) {
-    return this.genderService.remove(id);
+    return this.genderService.remove(+id);
   }
 }

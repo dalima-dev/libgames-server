@@ -27,7 +27,7 @@ export class GameService {
     return this.findById(id);
   }
 
-  async create(dto: CreateGameDto) {
+  async create(dto: CreateGameDto): Promise<void | Game> {
     const data: Game = { ...dto };
     return await this.prisma.game.create({ data }).catch(this.handleError);
   }
@@ -36,7 +36,7 @@ export class GameService {
     console.log(error);
   }
 
-  async update(id: string, dto: UpdateGameDto) {
+  async update(id: string, dto: UpdateGameDto): Promise<Game> {
     await this.findById(id);
     const data: Partial<Game> = { ...dto };
     return await this.prisma.game.update({ where: { id }, data });
