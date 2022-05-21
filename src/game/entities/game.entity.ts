@@ -1,7 +1,7 @@
 export class Game {
   id?: string;
-  coverImageUrl: string;
   title: string;
+  coverImageUrl: string;
   description: string;
   year: number;
   imdbScore: number;
