@@ -15,7 +15,7 @@ export class CreateGameDto {
     description: 'URL of game image.',
     example: 'https://m.media-amazon.com/images/I/91u+hPR8NTL._AC_SX425_.jpg',
   })
-  converImageUrl: string;
+  coverImageUrl: string;
 
   @IsString({ message: 'Description is not a string!' })
   @Length(10, 200)
