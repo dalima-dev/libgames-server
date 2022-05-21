@@ -43,7 +43,7 @@ export class GameController {
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a game by ID.' })
-  delete(@Param('id') id: string) {
-    return this.gameService.delete(id);
+  remove(@Param('id') id: string) {
+    return this.gameService.remove(id);
   }
 }
