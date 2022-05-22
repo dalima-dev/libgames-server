@@ -8,7 +8,6 @@ First turn on your database (postgresql) server.
 
 ```bash
 $ npm install
-$ npm install prisma
 $ npx prisma db push
 ```
 
@@ -22,7 +21,7 @@ $ npm run start
 $ npm run start:dev
 ```
 
-<p align="center" class="display: flex; flex-direction: row; align-items: center">
+<p style="font-size: 2rem; display: flex; justify-content: center; align-items: center; gap: .8rem" >
   Made with
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="50" alt="Nest Logo" /></a>
 </p>
