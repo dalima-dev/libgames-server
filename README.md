@@ -22,7 +22,7 @@ $ npm run start
 $ npm run start:dev
 ```
 
-<p align="center" style="display: flex; align-items: center">
+<p align="center" style="display: flex; flex-direction: row; align-items: center">
   Made with
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="100" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="150" alt="Nest Logo" /></a>
 </p>
