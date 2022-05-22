@@ -5,7 +5,7 @@ export class Game {
   description: string;
   year: number;
   imdbScore: number;
-  trailerYouTubeUrl: string;
-  gameplayYouTubeUrl: string;
+  trailerYoutubeUrl: string;
+  gameplayYoutubeUrl: string;
 
 }
