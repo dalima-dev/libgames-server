@@ -21,6 +21,6 @@ $ npm run start
 $ npm run start:dev
 ```
 
-<p  style="font-size: 1.2rem display: flex; justify-content: center" >Made with
+<p  style="font-size: 1.2rem display: flex;" >Made with
 <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="50" alt="Nest Logo" /></a>
 </p>
