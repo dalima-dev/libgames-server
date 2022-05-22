@@ -45,14 +45,14 @@ export class CreateGameDto {
   @IsString({ message: 'Trailer URL is not a string!' })
   @ApiProperty({
     description: 'Trailer URL of the game.',
-    example: 'An adventure game with great story and gameplay.',
+    example: 'https://youtube.com',
   })
   trailerYoutubeUrl: string;
 
   @IsString({ message: 'Gameplay URL is not a string!' })
   @ApiProperty({
     description: 'Gameplay URL of the game.',
-    example: 'An adventure game with great story and gameplay.',
+    example: 'https://youtube.com',
   })
   gameplayYoutubeUrl: string;
 }
