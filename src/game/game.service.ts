@@ -13,12 +13,12 @@ import { Game } from './entities/game.entity';
 export class GameService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<Game[]> {
-    return await this.prisma.game.findMany();
+  findAll(): Promise<Game[]> {
+    return this.prisma.game.findMany();
   }
 
   async findById(id: string): Promise<Game> {
-    const data = await this.prisma.game.findUnique({ where: { id } });
+    const data: Game = await this.prisma.game.findUnique({ where: { id } });
     if (!data) throw new NotFoundException(`Register with id ${id} not found!`);
     return data;
   }
@@ -27,24 +27,24 @@ export class GameService {
     return this.findById(id);
   }
 
-  async create(dto: CreateGameDto): Promise<void | Game> {
+  create(dto: CreateGameDto): Promise<void | Game> {
     const data: Game = { ...dto };
-    return await this.prisma.game.create({ data }).catch(this.handleError);
+    return this.prisma.game.create({ data }).catch(this.handleError);
   }
 
   handleError(error: Error) {
     console.log(error);
   }
 
-  async update(id: string, dto: UpdateGameDto): Promise<Game> {
-    await this.findById(id);
+  update(id: string, dto: UpdateGameDto): Promise<Game> {
+    this.findById(id);
     const data: Partial<Game> = { ...dto };
-    return await this.prisma.game.update({ where: { id }, data });
+    return this.prisma.game.update({ where: { id }, data });
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
-  async remove(id: string) {
-    await this.findById(id);
-    return await this.prisma.game.delete({ where: { id } });
+  remove(id: string) {
+    this.findById(id);
+    return this.prisma.game.delete({ where: { id } });
   }
 }

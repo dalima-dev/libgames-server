@@ -8,17 +8,17 @@ import { Gender } from './entities/gender.entity';
 export class GenderService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: CreateGenderDto): Promise<Gender | void> {
+  create(dto: CreateGenderDto): Promise<Gender | void> {
     const data: Gender = { ...dto };
-    return await this.prisma.gender.create({ data }).catch(this.handleError);
+    return this.prisma.gender.create({ data }).catch(this.handleError);
   }
 
   handleError(error: Error) {
     console.log(error);
   }
 
-  async findAll(): Promise<Gender[]> {
-    return await this.prisma.gender.findMany();
+  findAll(): Promise<Gender[]> {
+    return this.prisma.gender.findMany();
   }
 
   async findById(id: number): Promise<CreateGenderDto> {
@@ -33,14 +33,14 @@ export class GenderService {
     return this.findById(id);
   }
 
-  async update(id: number, dto: UpdateGenderDto): Promise<Gender> {
-    await this.findById(id);
+  update(id: number, dto: UpdateGenderDto): Promise<Gender> {
+    this.findById(id);
     const data: Partial<Gender> = { ...dto };
     return this.prisma.gender.update({ where: { id }, data });
   }
 
-  async remove(id: number) {
-    await this.findById(id);
-    return await this.prisma.gender.delete({ where: { id } });
+  remove(id: number) {
+    this.findById(id);
+    return this.prisma.gender.delete({ where: { id } });
   }
 }
