@@ -13,6 +13,10 @@ async function bootstrap() {
     .setTitle('Game Store API Routes')
     .setDescription('This is our game store API.')
     .setVersion('1.0')
+    .addTag('auth')
+    .addTag('user')
+    .addTag('game')
+    .addTag('gender')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
