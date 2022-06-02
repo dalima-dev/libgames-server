@@ -15,6 +15,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('auth')
     .addTag('user')
+    .addTag('profile')
     .addTag('game')
     .addTag('gender')
     .build();
