@@ -7,5 +7,4 @@ export class Game {
   imdbScore: number;
   trailerYoutubeUrl: string;
   gameplayYoutubeUrl: string;
-
 }

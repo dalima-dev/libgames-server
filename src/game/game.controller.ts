@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -41,9 +43,10 @@ export class GameController {
     return this.gameService.update(id, dto);
   }
 
+  @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a game by ID.' })
-  remove(@Param('id') id: string) {
-    return this.gameService.remove(id);
+  delete(@Param('id') id: string) {
+    return this.gameService.delete(id);
   }
 }

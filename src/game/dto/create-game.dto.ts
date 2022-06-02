@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, Length, Max, Min } from 'class-validator';
+import { IsNumber, IsString, IsUrl, Length, Max, Min } from 'class-validator';
 
 export class CreateGameDto {
   @IsString({ message: 'Title is not a string!' })
@@ -10,7 +10,7 @@ export class CreateGameDto {
   })
   title: string;
 
-  @IsString({ message: 'Cover Image URL is not a string!' })
+  @IsUrl({ message: 'Cover Image Url is not a url or string!' })
   @ApiProperty({
     description: 'URL of game image.',
     example: 'https://m.media-amazon.com/images/I/91u+hPR8NTL._AC_SX425_.jpg',
@@ -42,14 +42,14 @@ export class CreateGameDto {
   })
   imdbScore: number;
 
-  @IsString({ message: 'Trailer URL is not a string!' })
+  @IsUrl({ message: 'Trailer URL is not a url or string!' })
   @ApiProperty({
     description: 'Trailer URL of the game.',
     example: 'https://youtube.com',
   })
   trailerYoutubeUrl: string;
 
-  @IsString({ message: 'Gameplay URL is not a string!' })
+  @IsUrl({ message: 'Gameplay URL is not a url or string!' })
   @ApiProperty({
     description: 'Gameplay URL of the game.',
     example: 'https://youtube.com',
