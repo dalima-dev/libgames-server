@@ -4,38 +4,38 @@ import { IsBoolean, IsEmail, IsString, Matches, MinLength } from 'class-validato
 export class CreateUserDto {
   @IsString()
   @ApiProperty({
-    description: 'Name',
+    description: "User's nickname.",
     example: 'dalima',
   })
   nickname: string;
 
   @IsEmail()
   @ApiProperty({
-    description: 'Email',
+    description: "User's email",
     example: 'dalima.dev@gmail.com',
   })
   email: string;
 
   @MinLength(6)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'Password too weak',
+    message: 'Password too weak.',
   })
   @ApiProperty({
-    description: `User's password for login`,
+    description: `User's password.`,
     example: 'Abcd@1234',
   })
   password: string;
 
   @IsString()
   @ApiProperty({
-    description: 'Password confirmation',
-    example: 'Dani@123',
+    description: 'Password confirmation.',
+    example: 'Abcd@1234',
   })
   confirmPassword: string;
 
   @IsString()
   @ApiProperty({
-    description: `User's CPF`,
+    description: `User's CPF.`,
     example: '10999265482',
   })
   cpf: string;
@@ -43,7 +43,7 @@ export class CreateUserDto {
   @IsBoolean()
   @ApiProperty({
     description: 'Is user an administrator?',
-    example: 'True ',
+    example: true,
   })
   isAdmin: boolean;
 }
