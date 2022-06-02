@@ -13,6 +13,7 @@ async function bootstrap() {
     .setTitle('Game Store API Routes')
     .setDescription('This is our game store API.')
     .setVersion('1.0')
+    .addTag('status')
     .addTag('auth')
     .addTag('user')
     .addTag('profile')
