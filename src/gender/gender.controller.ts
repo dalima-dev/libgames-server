@@ -1,16 +1,18 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { GenderService } from './gender.service';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CreateGenderDto } from './dto/create-gender.dto';
 import { UpdateGenderDto } from './dto/update-gender.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { GenderService } from './gender.service';
 
 @ApiTags('gender')
 @Controller('gender')
@@ -42,8 +44,9 @@ export class GenderController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'This remove a gender by id.' })
-  remove(@Param('id') id: string) {
-    return this.genderService.remove(+id);
+  delete(@Param('id') id: string) {
+    return this.genderService.delete(+id);
   }
 }
