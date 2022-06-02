@@ -38,21 +38,21 @@ export class UserService {
     return this.prisma.user.create({ data }).catch(handleError);
   }
 
-  findAll() {
+  findAll(): Promise<User[]> {
     return this.prisma.user.findMany();
   }
 
-  async findById(id: string) {
+  async findById(id: string): Promise<User> {
     const record: User = await this.prisma.user.findUnique({ where: { id } });
     if (!record) throw new NotFoundException('User not found!');
     return record;
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<User> {
     return this.findById(id);
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     this.findById(id);
 
     if (updateUserDto.password)
@@ -68,7 +68,7 @@ export class UserService {
     return this.prisma.user.update({ data, where: { id } }).catch(handleError);
   }
 
-  delete(id: string) {
+  delete(id: string): Promise<User> {
     this.findById(id);
     return this.prisma.user.delete({ where: { id } });
   }
