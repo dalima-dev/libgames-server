@@ -17,9 +17,9 @@ model Game {
   trailerYoutubeUrl  String @map("trailer_youtube_url")
   gameplayYoutubeUrl String @map("gameplay_youtube_url")
 
-  // genders Gender[]
+  genders Gender[]
 
-  // profiles Profile[]
+  profiles Profile[]
 
   @@map("game")
 }
@@ -28,7 +28,7 @@ model Gender {
   id   Int    @id @default(autoincrement())
   name String @unique
 
-  // games Game[]
+  games Game[]
 
   @@map("gender")
 }
@@ -44,7 +44,7 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  // profiles Profile[]
+  profiles Profile[]
 
   @@map("user")
 }
@@ -54,10 +54,10 @@ model Profile {
   title    String @unique
   imageUrl String @map("image_url")
 
-  // user   User   @relation(fields: [userId], references: [id])
-  // userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
 
-  // favoriteGames Game[]
+  favoriteGames Game[]
 
   @@map("profile")
 }
