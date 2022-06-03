@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { handleError } from 'src/utils/handle-error.util';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -9,9 +10,25 @@ import { Profile } from './entities/profile.entity';
 export class ProfileService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createProfileDto: CreateProfileDto): Promise<Profile> {
-    const data: Profile = { ...createProfileDto };
-    return this.prisma.profile.create({ data }).catch(handleError);
+  create(userId: string, createProfileDto: CreateProfileDto): Promise<Profile> {
+    const data: Prisma.ProfileCreateInput = {
+      ...createProfileDto,
+      user: { connect: { id: userId } },
+      favoriteGames: {
+        createMany: {
+          data: createProfileDto.favoriteGames.map((game) => ({
+            gameId: game.gameId,
+            gameTitle: game.gameTitle,
+          })),
+        },
+      },
+    };
+
+    return this.prisma.profile
+      .create({
+        data,
+      })
+      .catch(handleError);
   }
 
   findAll(): Promise<Profile[]> {
