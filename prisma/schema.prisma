@@ -69,8 +69,6 @@ model ProfileGame {
   profile   Profile @relation(fields: [profileId], references: [id])
   profileId Int     @map("profile_id")
 
-  gameTitle String @unique
-
   @@id([gameId, profileId])
   @@map("profile_to_game")
 }
