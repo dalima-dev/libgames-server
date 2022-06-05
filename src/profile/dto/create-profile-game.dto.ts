@@ -8,11 +8,4 @@ export class CreateProfileGameDto {
     example: 'Place a favorite game ID here.',
   })
   gameId: string;
-
-  @IsString()
-  @ApiProperty({
-    description: 'Title of game.',
-    example: 'Bloodborne',
-  })
-  gameTitle: string;
 }
