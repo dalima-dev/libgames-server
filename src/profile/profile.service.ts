@@ -10,7 +10,26 @@ import { Profile } from './entities/profile.entity';
 export class ProfileService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(userId: string, createProfileDto: CreateProfileDto): Promise<Profile> {
+  profileSelect = {
+    favoriteGames: {
+      select: {
+        game: {
+          select: {
+            title: true,
+          },
+        },
+      },
+    },
+    title: true,
+    imageUrl: true,
+    user: {
+      select: {
+        nickname: true,
+      },
+    },
+  };
+
+  create(userId: string, createProfileDto: CreateProfileDto) {
     const data: Prisma.ProfileCreateInput = {
       ...createProfileDto,
       user: { connect: { id: userId } },
@@ -18,7 +37,6 @@ export class ProfileService {
         createMany: {
           data: createProfileDto.favoriteGames.map((game) => ({
             gameId: game.gameId,
-            gameTitle: game.gameTitle,
           })),
         },
       },
@@ -27,6 +45,7 @@ export class ProfileService {
     return this.prisma.profile
       .create({
         data,
+        select: this.profileSelect,
       })
       .catch(handleError);
   }
@@ -47,11 +66,28 @@ export class ProfileService {
     return this.findById(id);
   }
 
-  update(id: number, updateProfileDto: UpdateProfileDto): Promise<Profile> {
+  update(
+    id: number,
+    userId: string,
+    updateProfileDto: UpdateProfileDto,
+  ) {
     this.findById(id);
-    const data: Partial<Profile> = { ...updateProfileDto };
+    // const data: Partial<Profile> = { ...updateProfileDto };
+
+    const data: Prisma.ProfileUpdateInput = {
+      ...updateProfileDto,
+      user: { connect: { id: userId } },
+      favoriteGames: {
+        createMany: {
+          data: updateProfileDto.favoriteGames.map((game) => ({
+            gameId: game.gameId,
+          })),
+        },
+      },
+    };
+
     return this.prisma.profile
-      .update({ data, where: { id } })
+      .update({ data, where: { id }, select: this.profileSelect })
       .catch(handleError);
   }
 
