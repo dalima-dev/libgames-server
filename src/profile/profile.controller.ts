@@ -30,7 +30,7 @@ export class ProfileController {
   })
   @Post()
   create(@LoggedUser() user: User, @Body() createProfileDto: CreateProfileDto) {
-    return this.profileService.create(user.id ,createProfileDto);
+    return this.profileService.create(user.id, createProfileDto);
   }
 
   @ApiOperation({
@@ -45,7 +45,7 @@ export class ProfileController {
     summary: 'Get a profile by Id.',
   })
   @Get(':id')
-  findOne( @Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.profileService.findOne(+id);
   }
 
@@ -53,12 +53,16 @@ export class ProfileController {
     summary: 'Update a profile by Id.',
   })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.profileService.update(+id, updateProfileDto);
+  update(
+    @Param('id') id: string,
+    @LoggedUser() user: User,
+    @Body() updateProfileDto: UpdateProfileDto,
+  ) {
+    return this.profileService.update(+id, user.id, updateProfileDto);
   }
 
   @ApiOperation({
-    summary: 'Delete user by Id.',
+    summary: 'Delete profile by Id.',
   })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
