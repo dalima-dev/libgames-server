@@ -11,6 +11,7 @@ export class GameService {
   constructor(private readonly prisma: PrismaService) {}
 
   gameSelect = {
+    id: true,
     title: true,
     coverImageUrl: true,
     description: true,
@@ -30,11 +31,14 @@ export class GameService {
   };
 
   findAll(): Promise<Game[]> {
-    return this.prisma.game.findMany();
+    return this.prisma.game.findMany({ select: this.gameSelect });
   }
 
   async findById(id: string): Promise<Game> {
-    const record: Game = await this.prisma.game.findUnique({ where: { id } });
+    const record: Game = await this.prisma.game.findUnique({
+      where: { id },
+      select: this.gameSelect,
+    });
     if (!record)
       throw new NotFoundException(`Register with id ${id} not found!`);
     return record;
@@ -58,7 +62,7 @@ export class GameService {
     return this.prisma.game
       .create({
         data,
-        select: this.gameSelect
+        select: this.gameSelect,
       })
       .catch(handleError);
   }
@@ -75,7 +79,11 @@ export class GameService {
         },
       },
     };
-    return this.prisma.game.update({ where: { id }, data, select: this.gameSelect });
+    return this.prisma.game.update({
+      where: { id },
+      data,
+      select: this.gameSelect,
+    });
   }
 
   delete(id: string): Promise<Game> {
