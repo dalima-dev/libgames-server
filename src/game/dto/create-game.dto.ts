@@ -1,5 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, IsUrl, Length, Max, Min } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsNumber,
+  IsString,
+  IsUrl,
+  Length,
+  Max,
+  Min,
+  ValidateNested,
+} from 'class-validator';
+import { CreateGameGenderDto } from './create-game-gender.dto';
 
 export class CreateGameDto {
   @IsString({ message: 'Title is not a string!' })
@@ -55,4 +65,14 @@ export class CreateGameDto {
     example: 'https://youtube.com',
   })
   gameplayYoutubeUrl: string;
+
+  @ValidateNested({
+    each: true,
+  })
+  @Type(() => CreateGameGenderDto)
+  @ApiProperty({
+    description: 'List all genders of this game.',
+    type: [CreateGameGenderDto],
+  })
+  genders: CreateGameGenderDto[];
 }

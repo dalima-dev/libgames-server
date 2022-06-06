@@ -17,7 +17,7 @@ model Game {
   trailerYoutubeUrl  String @map("trailer_youtube_url")
   gameplayYoutubeUrl String @map("gameplay_youtube_url")
 
-  genders Gender[]
+  genders GameGender[]
 
   profiles ProfileGame[]
 
@@ -28,9 +28,20 @@ model Gender {
   id   Int    @id @default(autoincrement())
   name String @unique
 
-  games Game[]
+  games GameGender[]
 
   @@map("gender")
+}
+
+model GameGender {
+  game   Game   @relation(fields: [gameId], references: [id])
+  gameId String @map("game_id")
+
+  gender   Gender @relation(fields: [genderId], references: [id], onDelete: Cascade)
+  genderId Int    @map("gender_id")
+
+  @@id([gameId, genderId])
+  @@map("gender_to_game")
 }
 
 model User {
