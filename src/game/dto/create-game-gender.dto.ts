@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsUUID } from 'class-validator';
+import { IsInt } from 'class-validator';
 
 export class CreateGameGenderDto {
-  @IsUUID()
+  @IsInt()
   @ApiProperty({
     description: 'Gender ID.',
     example: 'Place a gender ID here.',
